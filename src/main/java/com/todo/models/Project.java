@@ -8,9 +8,20 @@ import java.util.Objects;
 
 import com.todo.models.enums.Status;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+@Table(name = "tb_Project")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
 	private String description;
@@ -18,6 +29,8 @@ public class Project implements Serializable {
 	private Integer projectStatus;
 	private Instant createdAt;
 	private Instant updatedAt;
+	
+	@Transient
 	private List<Task> tasks = new ArrayList<>();
 
 	public Project() {
