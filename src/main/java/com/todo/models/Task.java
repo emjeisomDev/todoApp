@@ -4,14 +4,16 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.todo.models.enums.Status;
+
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private Integer id;
 	private String title;
 	private String description;
 	private String responsable;
-	private String status;
+	private Integer taskStatus;
 	private Instant createdAt;
 	private Instant updatedAt;
 	private Project project;
@@ -19,22 +21,22 @@ public class Task implements Serializable {
 	public Task() {
 	}
 
-	public Task(Long id, String title, String description, String responsable, String status, Instant createdAt, Instant updatedAt, Project project) {
+	public Task(Integer id, String title, String description, String responsable, Status taskStatus, Instant createdAt, Instant updatedAt, Project project) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.responsable = responsable;
-		this.status = status;
+		setTaskStatus(taskStatus);;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.project = project;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -66,12 +68,14 @@ public class Task implements Serializable {
 		this.responsable = responsable;
 	}
 
-	public String getStatus() {
-		return status;
+	public Status getTaskStatus() {
+		return Status.valueOf(taskStatus);
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setTaskStatus(Status taskStatus) {
+		if(taskStatus != null) {
+			this.taskStatus = taskStatus.getCode();
+		}
 	}
 
 	public Instant getCreatedAt() {

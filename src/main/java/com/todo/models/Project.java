@@ -6,14 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.todo.models.enums.Status;
+
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private Integer id;
 	private String title;
 	private String description;
 	private String responsable;
-	private String status;
+	private Integer projectStatus;
 	private Instant createdAt;
 	private Instant updatedAt;
 	private List<Task> tasks = new ArrayList<>();
@@ -21,21 +23,21 @@ public class Project implements Serializable {
 	public Project() {
 	}
 
-	public Project(Long id, String title, String description, String responsable, String status, Instant createdAt, Instant updatedAt) {
+	public Project(Integer id, String title, String description, String responsable, Status projectStatus, Instant createdAt, Instant updatedAt) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.responsable = responsable;
-		this.status = status;
+		setProjectStatus(projectStatus);
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -67,12 +69,14 @@ public class Project implements Serializable {
 		this.responsable = responsable;
 	}
 
-	public String getStatus() {
-		return status;
+	public Status getProjectStatus() {
+		return Status.valueOf(projectStatus);
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setProjectStatus(Status projectStatus) {
+		if(projectStatus != null) {
+			this.projectStatus = projectStatus.getCode();
+		}
 	}
 
 	public Instant getCreatedAt() {
