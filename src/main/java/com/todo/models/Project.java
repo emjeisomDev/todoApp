@@ -2,6 +2,8 @@ package com.todo.models;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Project implements Serializable {
@@ -14,6 +16,7 @@ public class Project implements Serializable {
 	private String status;
 	private Instant createdAt;
 	private Instant updatedAt;
+	private List<Task> tasks = new ArrayList<>();
 
 	public Project() {
 	}
@@ -46,6 +49,10 @@ public class Project implements Serializable {
 
 	public String getDescription() {
 		return description;
+	}
+	
+	public List<Task> getTasks() {
+		return tasks;
 	}
 
 	public void setDescription(String description) {
@@ -101,10 +108,5 @@ public class Project implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Project [id: " + id + ", title: " + title + ", description: " + description + ", responsable: "
-				+ responsable + ", status: " + status + ", createdAt: " + createdAt + ", updatedAt: " + updatedAt + "]";
-	}
 
 }

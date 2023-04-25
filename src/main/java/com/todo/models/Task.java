@@ -14,11 +14,12 @@ public class Task implements Serializable {
 	private String status;
 	private Instant createdAt;
 	private Instant updatedAt;
+	private Project project;
 
 	public Task() {
 	}
 
-	public Task(Long id, String title, String description, String responsable, String status, Instant createdAt, Instant updatedAt) {
+	public Task(Long id, String title, String description, String responsable, String status, Instant createdAt, Instant updatedAt, Project project) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -26,6 +27,7 @@ public class Task implements Serializable {
 		this.status = status;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.project = project;
 	}
 
 	public Long getId() {
@@ -46,6 +48,10 @@ public class Task implements Serializable {
 
 	public String getDescription() {
 		return description;
+	}
+	
+	public Project getProject() {
+		return project;
 	}
 
 	public void setDescription(String description) {
@@ -83,6 +89,10 @@ public class Task implements Serializable {
 	public void setUpdatedAt(Instant updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 
 
@@ -103,9 +113,4 @@ public class Task implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Project [id: " + id + ", title: " + title + ", description: " + description + ", responsable: "
-				+ responsable + ", status: " + status + ", createdAt: " + createdAt + ", updatedAt: " + updatedAt + "]";
-	}
 }
