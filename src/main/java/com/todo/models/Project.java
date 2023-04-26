@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.todo.models.enums.Status;
 
 import jakarta.persistence.Entity;
@@ -34,7 +33,6 @@ public class Project implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant updatedAt;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "project")
 	private List<Task> tasks = new ArrayList<>();
 
